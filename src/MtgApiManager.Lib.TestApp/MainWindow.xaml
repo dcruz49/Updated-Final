@@ -13,11 +13,15 @@
         <local:MainViewModel />
     </Window.DataContext>
     <Grid Margin="0,10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="621*"/>
+            <ColumnDefinition Width="379*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
             <RowDefinition Height="30" />
         </Grid.RowDefinitions>
-        <TabControl Grid.Row="0">
+        <TabControl Grid.Row="0" Grid.ColumnSpan="2">
             <TabItem Header="Cards">
                 <Grid Margin="10,10,10,0">
                     <Grid.RowDefinitions>
@@ -80,7 +84,7 @@
                         Grid.Row="2"
                         ItemsSource="{Binding Path=CardsCollection}"
                         SelectedValue="{Binding Path=SelectedCardId}"
-                        SelectedValuePath="Id">
+                        SelectedValuePath="Id" Margin="0,0,201,0">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -92,12 +96,11 @@
                     </ListView>
                     <StackPanel
                         Grid.Row="2"
-                        Grid.Column="2"
                         HorizontalAlignment="Left"
-                        Orientation="Vertical">
+                        Orientation="Vertical" Grid.ColumnSpan="3" Margin="289,0,0,0" Width="425">
                         <Image
-                            Width="200"
-                            Height="300"
+                            Width="273"
+                            Height="373"
                             Source="{Binding Path=SelectedCard.ImageUrl}" />
                         <StackPanel Orientation="Horizontal">
                             <Label Content="Name:" />
@@ -268,6 +271,6 @@
             Margin="0,0,10,0"
             HorizontalAlignment="Right"
             VerticalAlignment="Bottom"
-            IsIndeterminate="{Binding Path=IsLoading}" />
+            IsIndeterminate="{Binding Path=IsLoading}" Grid.Column="1" />
     </Grid>
 </Window>
