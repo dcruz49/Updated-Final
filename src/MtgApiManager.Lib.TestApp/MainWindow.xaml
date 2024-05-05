@@ -12,265 +12,289 @@
     <Window.DataContext>
         <local:MainViewModel />
     </Window.DataContext>
-    <Grid Margin="0,10">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="621*"/>
-            <ColumnDefinition Width="379*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="30" />
-        </Grid.RowDefinitions>
-        <TabControl Grid.Row="0" Grid.ColumnSpan="2">
-            <TabItem Header="Cards">
-                <Grid Margin="10,10,10,0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="25" />
-                        <RowDefinition Height="10" />
-                        <RowDefinition Height="1*" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*" />
-                        <ColumnDefinition Width="10" />
-                        <ColumnDefinition Width="250" />
-                        <ColumnDefinition Width="10" />
-                        <ColumnDefinition Width="250" />
-                    </Grid.ColumnDefinitions>
-                    <Grid Grid.Row="0" Grid.Column="0">
+    <Border>
+        <Grid Margin="0,30,0,-10" Background= "Tan">
+            <Grid.Resources>
+            </Grid.Resources>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="620*"/>
+                <ColumnDefinition Width="47*"/>
+                <ColumnDefinition Width="331*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="30" />
+            </Grid.RowDefinitions>
+            <TabControl Grid.Row="0" Grid.ColumnSpan="3">
+                <TabItem Header="Cards">
+                    <Grid Margin="10,0,10,0" Background= "Tan">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25" />
+                            <RowDefinition Height="10" />
+                            <RowDefinition Height="89*" />
+                            <RowDefinition Height="472*"/>
+                        </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="50" />
-                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="53*" />
+                            <ColumnDefinition Width="401*"/>
                             <ColumnDefinition Width="10" />
-                            <ColumnDefinition Width="60" />
+                            <ColumnDefinition Width="250" />
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="250" />
                         </Grid.ColumnDefinitions>
-                        <Label
+                        <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition Width="60" />
+                            </Grid.ColumnDefinitions>
+                            <Label
                             VerticalAlignment="Center"
                             VerticalContentAlignment="Center"
                             Content="Name" />
-                        <TextBox
+                            <TextBox
                             Grid.Column="1"
                             VerticalContentAlignment="Center"
                             Text="{Binding Path=CardSearchString}" />
-                        <Button
+                            <Button
                             Grid.Column="3"
                             Command="{Binding Path=CardSearchCommand}"
                             Content="Search" />
-                    </Grid>
-                    <Button
+                        </Grid>
+                        <Button
                         Grid.Row="0"
-                        Grid.Column="2"
+                        Grid.Column="3"
                         HorizontalAlignment="Left"
                         Command="{Binding Path=FindSelectedCardCommand}"
                         Content="Find Selected" />
-                    <StackPanel
+                        <StackPanel
                         Grid.Row="0"
-                        Grid.Column="4"
+                        Grid.Column="5"
                         Orientation="Horizontal">
-                        <Button
+                            <Button
                             Margin="0,0,5,0"
                             Command="{Binding Path=GetCardTypesCommand}"
                             Content="Types" />
-                        <Button
+                            <Button
                             Margin="0,0,5,0"
                             Command="{Binding Path=GetCardSuperTypesCommand}"
                             Content="Super Types" />
-                        <Button
+                            <Button
                             Margin="0,0,5,0"
                             Command="{Binding Path=GetCardSubTypesCommand}"
                             Content="Sub Types" />
-                        <Button Command="{Binding Path=GetCardFormatsCommand}" Content="Formats" />
-                    </StackPanel>
-                    <ListView
+                            <Button Command="{Binding Path=GetCardFormatsCommand}" Content="Formats" />
+                        </StackPanel>
+                        <ListView
                         Grid.Row="2"
                         ItemsSource="{Binding Path=CardsCollection}"
                         SelectedValue="{Binding Path=SelectedCardId}"
-                        SelectedValuePath="Id" Margin="0,0,201,0">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <Label Content="{Binding Path=Name}" ContentStringFormat="{}{0}, " />
-                                    <Label Content="{Binding Path=MultiverseId}" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                    <StackPanel
+                        SelectedValuePath="Id" Margin="10,0,191,0" Background= "Tan" SelectionChanged="ListView_SelectionChanged" Grid.RowSpan="2" d:ItemsSource="{d:SampleData ItemCount=5}" BorderBrush="Black" BorderThickness="5,5,5,5" Grid.ColumnSpan="2">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="{Binding Path=Name}" ContentStringFormat="{}{0}, " />
+                                        <Label Content="{Binding Path=MultiverseId}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                        <StackPanel
                         Grid.Row="2"
                         HorizontalAlignment="Left"
-                        Orientation="Vertical" Grid.ColumnSpan="3" Margin="289,0,0,0" Width="425">
-                        <Image
-                            Width="273"
-                            Height="373"
-                            Source="{Binding Path=SelectedCard.ImageUrl}" />
-                        <StackPanel Orientation="Horizontal">
-                            <Label Content="Name:" />
-                            <Label Content="{Binding Path=SelectedCard.Name}" />
+                        Orientation="Vertical" Grid.ColumnSpan="3" Margin="236,0,0,0" Width="425" Grid.RowSpan="2" Background="Tan" Grid.Column="1">
+                            <Image Width="273" Height="373">
+                                <Image.Style>
+                                    <Style TargetType="Image">
+                                        <Setter Property="Source" Value="{Binding Path=SelectedCard.ImageUrl}"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Path=SelectedCard.ImageUrl}" Value="{x:Null}">
+                                                <Setter Property="Source" Value="file:///C:/Users/cruze/OneDrive/Desktop/CCU/CIS-495/Images/Magic_card_back.png"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Path=SelectedCard.ImageUrl}" Value="">
+                                                <Setter Property="Source" Value="file:///C:/Users/cruze/OneDrive/Desktop/CCU/CIS-495/Images/Magic_card_back.png"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Image.Style>
+                            </Image>
+
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Name:" />
+                                <Label Content="{Binding Path=SelectedCard.Name}" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Multiverse ID:" />
+                                <Label Content="{Binding Path=SelectedCard.MultiverseId}" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Artist:" />
+                                <Label Content="{Binding Path=SelectedCard.Artist}" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Layout:" />
+                                <Label Content="{Binding Path=SelectedCard.Layout}" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Power:" />
+                                <Label Content="{Binding Path=SelectedCard.Power}" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Mana Cost:" />
+                                <Label Content="{Binding Path=SelectedCard.ManaCost}" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Rarity:" />
+                                <Label Content="{Binding Path=SelectedCard.Rarity}" />
+                            </StackPanel>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <Label Content="Multiverse ID:" />
-                            <Label Content="{Binding Path=SelectedCard.MultiverseId}" />
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <Label Content="Artist:" />
-                            <Label Content="{Binding Path=SelectedCard.Artist}" />
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <Label Content="Layout:" />
-                            <Label Content="{Binding Path=SelectedCard.Layout}" />
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <Label Content="Power:" />
-                            <Label Content="{Binding Path=SelectedCard.Power}" />
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <Label Content="Mana Cost:" />
-                            <Label Content="{Binding Path=SelectedCard.ManaCost}" />
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <Label Content="Rarity:" />
-                            <Label Content="{Binding Path=SelectedCard.Rarity}" />
-                        </StackPanel>
-                    </StackPanel>
-                    <ListView
+                        <ListView
                         Grid.Row="2"
-                        Grid.Column="4"
-                        ItemsSource="{Binding Path=TypesCollection}" />
-                </Grid>
-            </TabItem>
-            <TabItem Header="Set">
-                <Grid Margin="10">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="25" />
-                        <RowDefinition Height="10" />
-                        <RowDefinition Height="1*" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*" />
-                        <ColumnDefinition Width="10" />
-                        <ColumnDefinition Width="1*" />
-                        <ColumnDefinition Width="10" />
-                        <ColumnDefinition Width="1*" />
-                    </Grid.ColumnDefinitions>
-                    <Grid Grid.Row="0" Grid.Column="0">
+                        Background= "Tan"
+                        Grid.Column="5"
+                        ItemsSource="{Binding TypesCollection}" Grid.RowSpan="2" Padding="5,5,5,5" BorderBrush="Black" ScrollViewer.CanContentScroll="False" BorderThickness="5,5,5,5" d:ItemsSource="{d:SampleData ItemCount=5}" />
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Set" HorizontalAlignment="Left" Margin="-2,-2,0,0" Width="33">
+                    <Grid Margin="10" Background= "Tan">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25" />
+                            <RowDefinition Height="10" />
+                            <RowDefinition Height="1*" />
+                        </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="50" />
-                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="159*" />
                             <ColumnDefinition Width="10" />
-                            <ColumnDefinition Width="60" />
+                            <ColumnDefinition Width="159*" />
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="121*" />
+                            <ColumnDefinition Width="38*"/>
                         </Grid.ColumnDefinitions>
-                        <Label
+                        <Grid Grid.Row="0" Grid.Column="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition Width="60" />
+                            </Grid.ColumnDefinitions>
+                            <Label
                             VerticalAlignment="Center"
                             VerticalContentAlignment="Center"
                             Content="Name" />
-                        <TextBox
+                            <TextBox
                             Grid.Column="1"
                             VerticalContentAlignment="Center"
                             Text="{Binding Path=SetSearchString}" />
-                        <Button
+                            <Button
                             Grid.Column="3"
                             Command="{Binding Path=SetSearchCommand}"
                             Content="Search" />
-                    </Grid>
-                    <Button
+                        </Grid>
+                        <Button
                         Grid.Row="0"
                         Grid.Column="2"
                         HorizontalAlignment="Left"
                         Command="{Binding Path=FindSelectedSetCommand}"
                         Content="Find Selected" />
-                    <Button
+                        <Button
                         Grid.Row="0"
                         Grid.Column="4"
                         HorizontalAlignment="Left"
                         Command="{Binding Path=GenerateBoosterCommand}"
                         Content="Generate Booster" />
-                    <ListView
+                        <ListView
                         Grid.Row="2"
+                        Background= "Tan"
                         Grid.Column="0"
-                        ItemsSource="{Binding Path=SetsCollection}"
-                        SelectedValue="{Binding Path=SelectedSetCode}"
-                        SelectedValuePath="Code">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <Label Content="{Binding Path=Name}" ContentStringFormat="{}{0}, " />
-                                    <Label Content="{Binding Path=Code}" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                    <StackPanel
+                        ItemsSource="{Binding SetsCollection}"
+                        SelectedValue="{Binding SelectedSetCode}"
+                        SelectedValuePath="Code" BorderBrush="Black" Margin="1,1,1,1" BorderThickness="5,5,5,5">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="{Binding Path=Name}" ContentStringFormat="{}{0}, " />
+                                        <Label Content="{Binding Path=Code}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                        <StackPanel
                         Grid.Row="2"
                         Grid.Column="2"
                         HorizontalAlignment="Left"
                         Orientation="Vertical">
-                        <StackPanel Orientation="Horizontal">
-                            <Label Content="Name:" />
-                            <Label Content="{Binding Path=SelectedSet.Name}" />
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Name:" />
+                                <Label Content="{Binding Path=SelectedSet.Name}" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Block:" />
+                                <Label Content="{Binding Path=SelectedSet.Block}" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Code:" />
+                                <Label Content="{Binding Path=SelectedSet.Code}" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="GathererCode:" />
+                                <Label Content="{Binding Path=SelectedSet.GathererCode}" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="OldCode:" />
+                                <Label Content="{Binding Path=SelectedSet.OldCode}" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="MagicCardsInfoCode:" />
+                                <Label Content="{Binding Path=SelectedSet.MagicCardsInfoCode}" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="ReleaseDate:" />
+                                <Label Content="{Binding Path=SelectedSet.ReleaseDate}" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Border:" />
+                                <Label Content="{Binding Path=SelectedSet.Border}" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Expansion:" />
+                                <Label Content="{Binding Path=SelectedSet.Expansion}" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="OnlineOnly:" />
+                                <Label Content="{Binding Path=SelectedSet.OnlineOnly}" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Type:" />
+                                <Label Content="{Binding Path=SelectedSet.Type}" />
+                            </StackPanel>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <Label Content="Block:" />
-                            <Label Content="{Binding Path=SelectedSet.Block}" />
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <Label Content="Code:" />
-                            <Label Content="{Binding Path=SelectedSet.Code}" />
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <Label Content="GathererCode:" />
-                            <Label Content="{Binding Path=SelectedSet.GathererCode}" />
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <Label Content="OldCode:" />
-                            <Label Content="{Binding Path=SelectedSet.OldCode}" />
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <Label Content="MagicCardsInfoCode:" />
-                            <Label Content="{Binding Path=SelectedSet.MagicCardsInfoCode}" />
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <Label Content="ReleaseDate:" />
-                            <Label Content="{Binding Path=SelectedSet.ReleaseDate}" />
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <Label Content="Border:" />
-                            <Label Content="{Binding Path=SelectedSet.Border}" />
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <Label Content="Expansion:" />
-                            <Label Content="{Binding Path=SelectedSet.Expansion}" />
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <Label Content="OnlineOnly:" />
-                            <Label Content="{Binding Path=SelectedSet.OnlineOnly}" />
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <Label Content="Type:" />
-                            <Label Content="{Binding Path=SelectedSet.Type}" />
-                        </StackPanel>
-                    </StackPanel>
-                    <ListView
+                        <ListView
                         Grid.Row="2"
+                        Background= "Tan"
                         Grid.Column="4"
-                        ItemsSource="{Binding Path=GeneratedBoosterCollection}">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <Label Content="{Binding Path=Name}" ContentStringFormat="{}{0}, " />
-                                    <Label Content="{Binding Path=MultiverseId}" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </Grid>
-            </TabItem>
-        </TabControl>
-        <ProgressBar
+                        ItemsSource="{Binding Path=GeneratedBoosterCollection}" BorderBrush="Black" BorderThickness="5,5,5,5" Grid.ColumnSpan="2" d:ItemsSource="{d:SampleData ItemCount=5}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="{Binding Path=Name}" ContentStringFormat="{}{0}, " />
+                                        <Label Content="{Binding Path=MultiverseId}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+            <ProgressBar
             Grid.Row="1"
             Width="300"
             Height="20"
             Margin="0,0,10,0"
             HorizontalAlignment="Right"
             VerticalAlignment="Bottom"
-            IsIndeterminate="{Binding Path=IsLoading}" Grid.Column="1" />
-    </Grid>
+            IsIndeterminate="{Binding Path=IsLoading}" Grid.Column="2" />
+        </Grid>
+    </Border>
 </Window>
